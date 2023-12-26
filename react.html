@@ -14,6 +14,8 @@
 </html>
 -->
 
+<!-- 자바스크립트에서는 파이썬처럼 앞에 function을 붙이고 괄호를 쓰거나 선언한뒤 = 뒤에 () => 를 붙이면 arrow function 이라고 일반 함수와 비슷하게 선언이 됨. -->
+
 <!DOCTYPE html>
 <html>
 <body>
@@ -25,12 +27,18 @@
 
 <script type = "text/babel">  //type 을 설정해서 변환기가 아래 자바스크립트 코드에 적용 되도록.
     const root = document.getElementById("root");
-    //const h3 = React.createElement("h1", {id : "span-byReact", style : {color : "red"}, onMouseEnter: () => console.log("mouse enter!")}, "content"); 이 코드와 똑같이 동작하는 코드는 아래와 같음. JSX이용.
-    const h3 = <h3 id = "span-byReact"style ={{color : "red"}} onMouseEnter = {() => console.log("mouse enter!")}> content </h3>
-    //const btn = React.createElement("button", {onClick: () => console.log("click!")} , "Click me");   이코드와 똑같은 동작하는 코드는 아래와 같다. JSX이용.
-    const btn = <button  onClick={() => console.log("click!")}>Click me</button>
-    //위의 두코드는 JSX로 작성됬는데. 브라우저는 이를 이해하지 못하므로 Babel이라는 변환기를 통해서 바꿔줘야함.
-    const container = React.createElement("div", null, [h3,btn]);
+    //const h3 = React.createElement("h1", {id : "span-byReact", style : {color : "red"}, onMouseEnter: () => console.log("mouse enter!")}, "content");    //이 코드와 똑같이 동작하는 코드는 아래와 같음. JSX이용.
+    function H3(){return( <h3 id = "span-byReact"style ={{color : "red"}} onMouseEnter = {() => console.log("mouse enter!")}> content </h3> )}
+    //const btn = React.createElement("button", {onClick: () => console.log("click!")} , "Click me");                //이코드와 똑같은 동작하는 코드는 아래와 같다. JSX이용.
+    const Btn = () => <button  onClick={() => console.log("click!")}>Click me</button>
+    //위의 두코드는 JSX로 작성됬는데. 브라우저는 이를 이해하지 못하므로 Babel이라는 변환기를 통해서 브라우저가 이해할수있게 바꾸고 전달해야함.
+    //const container = React.createElement("div", null, [h3,btn]);          //이 코드도 아래처럼 바꿀수 있음.
+    const container = (
+        <div> 
+            <H3 />                 
+            <Btn />  
+        </div>
+    ); //위처럼 함수를 <함수명/> 형태로 호출하려면 함수의 맨앞자리가 "무조건" 대문자여야함. 대문자가 아니라면 React나 JSX는 HTML 태그로 인식하기 때문.
     ReactDOM.render(container, root);
 </script>
 </html>
