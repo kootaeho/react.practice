@@ -47,7 +47,8 @@
     const root = document.getElementById("root");
     const App = () => {
         //const data = React.useState(0);
-        const [counter , modifier] = React.useState(0);  // = data 라고 해도 된다. 윗줄이 주석처리 되어있지 않을때는.  useState는 값을 두개를 반환한다. data값, datat값을 바꿀때 호출될 함수(modifier).
+        const [counter , modifier] = React.useState(0);  // = data 라고 해도 된다. 윗줄이 주석처리 되어있지 않을때는.  useState는 값을 두개를 반환한다. data값, datat값을 바꿀때 호출될 함수(modifier). ()안에 값을
+        //입력하면 그게 디폴트값으로 설정되서 그 값을 초기에 반환함.  React.useState()의 장점은 값을 바꾸는 함수(modifier)가 실행되면 자동으로 그값을 반영해 브라우저를 refresh 함.(자동으로 렌더링함.)
         const onClick = () =>{
             modifier(counter + 1);  //()안에 있는 값으로 counter 값을 변경함. 만약 3이라면 counter = 3 을하는거고 counter + 1 이라면 counter = counter + 1 을 하는것임. 그이후 자동으로 render함.
         };
