@@ -23,9 +23,10 @@
 </body>
 <script src = "https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
 <script src = "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-<script src = "https://unpkg.com/@babel/standalone/babel.min.js"></script>  <!--babel 변환기 설치 -->
+<script src = "https://unpkg.com/@babel/standalone/babel.min.js"></script>  <!--babel 변환기 설치 --> 
 
 <script type = "text/babel">  //type 을 설정해서 변환기가 아래 자바스크립트 코드에 적용 되도록.
+    /*
     const root = document.getElementById("root");
     //const h3 = React.createElement("h1", {id : "span-byReact", style : {color : "red"}, onMouseEnter: () => console.log("mouse enter!")}, "content");    //이 코드와 똑같이 동작하는 코드는 아래와 같음. JSX이용.
     function H3(){return( <h3 id = "span-byReact"style ={{color : "red"}} onMouseEnter = {() => console.log("mouse enter!")}> content </h3> )}
@@ -40,5 +41,24 @@
         </div>
     ); //위처럼 함수를 <함수명/> 형태로 호출하려면 함수의 맨앞자리가 "무조건" 대문자여야함. 대문자가 아니라면 React나 JSX는 HTML 태그로 인식하기 때문.
     ReactDOM.render(container, root);
+    */
+
+
+    const root = document.getElementById("root");
+    let counter = 0;
+    function countUp(){
+        counter = counter + 1;
+        reRender();
+    }
+    function reRender(){
+        ReactDOM.render(<Container/>, root);
+    }
+    const Container = () => (
+        <div>
+            <h3>Total click: {counter}</h3>
+            <button onClick={countUp}>Click me</button>
+        </div>
+    );
+    reRender();
 </script>
 </html>
