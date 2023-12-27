@@ -45,20 +45,16 @@
 
 
     const root = document.getElementById("root");
-    let counter = 0;
-    function countUp(){
-        counter = counter + 1;
-        reRender();
-    }
-    function reRender(){
-        ReactDOM.render(<Container/>, root);
-    }
-    const Container = () => (
+    const App = () => {
+        //const data = React.useState(0);
+        const [counter , modifier] = React.useState(0);  // = data 라고 해도 된다. 윗줄이 주석처리 되어있지 않을때는.
+    return (
         <div>
             <h3>Total click: {counter}</h3>
-            <button onClick={countUp}>Click me</button>
+            <button >Click me</button>
         </div>
     );
-    reRender();
+    };
+    ReactDOM.render(<App/>, root);
 </script>
 </html>
