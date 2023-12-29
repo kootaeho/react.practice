@@ -63,7 +63,7 @@
     ReactDOM.render(<App/>, root);
     */
 
-    const root = document.getElementById("root");
+    /*  변환기
     function MinutesToHours(){
         const [amount, setMinutes] = React.useState();
         const [flipped, setFlipped] = React.useState(false);
@@ -150,6 +150,29 @@
         </div>
     )
     };
+    */
+    function Btn(){
+        return <button style = {{
+            backgroundColor:"#deb887",
+            color:"white",
+            padding:"10px 20px",
+            border:0,
+            borderRadius:10,
+        }}>Save Changes</button>;
+    }
+    function Confirm(){
+        return <button>Confrim</button>;
+    }
+
+    function App(){
+        return (
+            <div>
+                <Btn raa = "Save Btn"/>
+                <Btn raa = "Confirm Btn"/>
+            </div>
+        );
+    }
+    const root = document.getElementById("root");
     ReactDOM.render(<App/>, root);
 </script>
 </html>
