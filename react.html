@@ -17,15 +17,15 @@
 <!-- 자바스크립트에서는 파이썬처럼 앞에 function을 붙이고 괄호를 쓰거나 선언한뒤 = 뒤에 () => 를 붙이면 arrow function 이라고 일반 함수와 비슷하게 선언이 됨. -->
 
 <!DOCTYPE html>
-<html>
-<body>
-    <div id = "root"></div>
-</body>
+<html >
 <script src = "https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
 <script src = "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-<script src = "https://unpkg.com/@babel/standalone/babel.min.js"></script>  <!--babel 변환기 설치 --> 
-
-<script type = "text/babel">  //type 을 설정해서 변환기가 아래 자바스크립트 코드에 적용 되도록.
+<script src = "https://unpkg.com/@babel/standalone/babel.min.js"></script>  <!--babel 변환기 설치 -->   
+<script type = "text/babel">
+<body>
+    <div id="root"></div>
+</body>
+/*
     /*
     const root = document.getElementById("root");
     //const h3 = React.createElement("h1", {id : "span-byReact", style : {color : "red"}, onMouseEnter: () => console.log("mouse enter!")}, "content");    //이 코드와 똑같이 동작하는 코드는 아래와 같음. JSX이용.
@@ -151,28 +151,38 @@
     )
     };
     */
-    function Btn(){
-        return <button style = {{
-            backgroundColor:"#deb887",
-            color:"white",
-            padding:"10px 20px",
-            border:0,
-            borderRadius:10,
-        }}>Save Changes</button>;
+    
+    function Btn(text, changeValue){
+        return(
+        <button 
+            onClick={changeValue}
+            style = {{
+                backgroundColor:"#deb887",
+                color:"white",
+                padding:"10px 20px",
+                border:0,
+                borderRadius:10,
+        }}
+        >
+        {text}
+        </button>
+        );
     }
     function Confirm(){
         return <button>Confrim</button>;
     }
 
     function App(){
+        const [value,setValue] = React.useState("Save Changes");
+        const changeValue = () => setValue("Revert Changes");
         return (
             <div>
-                <Btn raa = "Save Btn"/>
-                <Btn raa = "Confirm Btn"/>
+                <Btn text =  {value}  changeValue={changeValue}/>               
+                <Btn text = "Continue"/>
             </div>
         );
     }
     const root = document.getElementById("root");
-    ReactDOM.render(<App/>, root);
+    ReactDOM.render(<App />, root);
 </script>
 </html>
