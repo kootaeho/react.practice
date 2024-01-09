@@ -22,8 +22,9 @@
 <body>
     <div id="root"></div>
 </body>
-<script src = "https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src = "https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
 <script src = "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src = "https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 <script src = "https://unpkg.com/@babel/standalone/babel.min.js"></script>  <!--babel 변환기 설치 -->   
 <script type = "text/babel">
 /*
@@ -153,17 +154,17 @@
     };
     */
     
-    function Btn({text, changeValue}){
+    function Btn({text, fontSize = 14}){ //fonstSize를 default로 14로 설정함.
         console.log(text,"was rendered");
         return(
         <button 
-            onClick={changeValue}
             style = {{
                 backgroundColor:"#deb887",
                 color:"white",
                 padding:"10px 20px",
                 border:0,
                 borderRadius:10,
+                fontSize : fontSize,
             }}
         >
             {text}
@@ -175,15 +176,18 @@
         return <button>Confrim</button>;
     }
 
-    const MemorizedBtn = React.memo(Btn);
-
+    const MemorizedBtn = React.memo(Btn);  //이 코드를 통해서 Btn을 호출활때 props가 바뀌엇을때 바뀐 컴포넌트만 render 하도록 함.
+    MemorizedBtn.propTypes={
+        text: PropTypes.string,
+        fontSize: PropTypes.number.isRequired,  //.isRequired 는 이 인자가 필수적으로 전달됨을 선언함. 전달되지 않으면 오류를 띄움.
+        //Prop type을 선언?설정? 함으로써 함수에 적절하지않은 type의 인자가 전달되었을 때 콘솔에 오류를띄어서 설명해줌. 이를 하지않으면 오류없이 그냥 실행되어 의도치않은 결과가 출력됨.
+    };
     function App(){
         const [value,setValue] = React.useState("Save Changes");
         const changeValueFunc = () => setValue("Revert Changes");
         return (
-            <div>
-                <MemorizedBtn text =  {value}  changeValue={changeValueFunc}/>               
-                <MemorizedBtn text = "Continue"/>
+            <div>          
+                <MemorizedBtn text="Text!" fontSize = {14} />
             </div>
         );
     }
